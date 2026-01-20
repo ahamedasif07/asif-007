@@ -90,7 +90,7 @@ const NavBar: React.FC = () => {
   return (
     <div
       className={`w-full transition-all duration-300 z-[1000] ${
-        isFixed ? "fixed top-0 left-0" : "relative mt-6"
+        isFixed ? "fixed top-2 left-0" : "relative mt-6"
       }`}
     >
       <div className="max-w-[1300px] mx-auto px-4 md:px-8">
