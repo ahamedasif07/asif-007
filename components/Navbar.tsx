@@ -8,7 +8,7 @@ import aLogo from "../public/assets/alogo.svg";
 interface MenuItem {
   name: string;
   id: string;
-  description?: string; // Optional description for the cards
+  description?: string;
 }
 
 const NavBar: React.FC = () => {
@@ -27,7 +27,7 @@ const NavBar: React.FC = () => {
     { name: "Contact", id: "contact", description: "Get in touch" },
   ];
 
-  // Scroll effect for sticky navbar
+  // Scroll logic for sticky header
   useEffect(() => {
     const handleScroll = () => setIsFixed(window.scrollY > 100);
     window.addEventListener("scroll", handleScroll);
@@ -40,13 +40,13 @@ const NavBar: React.FC = () => {
       const navEl = navRef.current;
       if (!navEl) return;
 
-      // Reset states
       gsap.set(navEl, { height: 64 });
       gsap.set(cardsRef.current, { y: 30, opacity: 0 });
 
       const tl = gsap.timeline({ paused: true });
 
       tl.to(navEl, {
+        // মোবাইলে height 'auto' করা হয়েছে যাতে কন্টেন্ট অনুযায়ী জায়গা নেয়
         height: window.innerWidth < 768 ? "auto" : 280,
         backgroundColor: "rgba(10, 10, 10, 0.98)",
         duration: 0.4,
@@ -89,20 +89,24 @@ const NavBar: React.FC = () => {
 
   return (
     <div
-      className={`w-full transition-all duration-300 z-[1000] ${isFixed ? "fixed top-0 left-0" : "relative mt-6"}`}
+      className={`w-full transition-all duration-300 z-[1000] ${
+        isFixed ? "fixed top-0 left-0" : "relative mt-6"
+      }`}
     >
       <div className="max-w-[1300px] mx-auto px-4 md:px-8">
         <nav
           ref={navRef}
-          className={`relative overflow-hidden border border-blue-500/30 rounded-2xl backdrop-blur-xl transition-shadow ${
-            isExpanded ? "shadow-2xl" : "shadow-md"
-          } bg-black/20`}
+          className={`relative border border-blue-500/30 rounded-2xl backdrop-blur-xl transition-shadow bg-black/20 ${
+            isExpanded
+              ? "shadow-2xl overflow-y-auto max-h-[85vh]"
+              : "shadow-md overflow-hidden"
+          }`}
         >
-          {/* Top Bar */}
-          <div className="h-[64px] flex items-center justify-between px-6 relative z-20">
+          {/* Top Bar - sticky added to keep logo/burger visible while scrolling menu */}
+          <div className="h-[64px] sticky top-0 flex items-center justify-between px-6 z-30 bg-black/10 backdrop-blur-md">
             {/* Logo */}
             <div
-              className="flex items-center gap-2 cursor-pointer"
+              className="flex items-center gap-0 cursor-pointer"
               onClick={() => scrollToSection("hero")}
             >
               <Image height={35} width={35} src={aLogo} alt="logo" />
@@ -118,20 +122,28 @@ const NavBar: React.FC = () => {
               aria-label="Toggle Menu"
             >
               <span
-                className={`h-[2px] bg-blue-500 transition-all duration-300 ${isExpanded ? "w-8 translate-y-[8px] rotate-45" : "w-8"}`}
+                className={`h-[2px] bg-blue-500 transition-all duration-300 ${
+                  isExpanded ? "w-8 translate-y-[8px] rotate-45" : "w-8"
+                }`}
               />
               <span
-                className={`h-[2px] bg-blue-400 transition-all duration-300 ${isExpanded ? "opacity-0" : "w-5"}`}
+                className={`h-[2px] bg-blue-400 transition-all duration-300 ${
+                  isExpanded ? "opacity-0" : "w-5"
+                }`}
               />
               <span
-                className={`h-[2px] bg-blue-300 transition-all duration-300 ${isExpanded ? "w-8 -translate-y-[8px] -rotate-45" : "w-6"}`}
+                className={`h-[2px] bg-blue-300 transition-all duration-300 ${
+                  isExpanded ? "w-8 -translate-y-[8px] -rotate-45" : "w-6"
+                }`}
               />
             </button>
           </div>
 
           {/* Expanded Content (Cards) */}
           <div
-            className={`card-content p-6 flex flex-col md:flex-row gap-4 ${isExpanded ? "block" : "hidden"}`}
+            className={`card-content p-6 flex flex-col md:flex-row gap-4 transition-all ${
+              isExpanded ? "flex opacity-100" : "hidden opacity-0"
+            }`}
           >
             {menuItems.map((item, idx) => (
               <div
@@ -140,7 +152,7 @@ const NavBar: React.FC = () => {
                   if (el) cardsRef.current[idx] = el;
                 }}
                 onClick={() => scrollToSection(item.id)}
-                className="flex-1 group cursor-pointer p-5 rounded-xl border border-white/5 bg-white/5 hover:bg-blue-500/10 hover:border-blue-500/40 transition-all"
+                className="flex-shrink-0 md:flex-1 group cursor-pointer p-5 rounded-xl border border-white/5 bg-white/5 hover:bg-blue-500/10 hover:border-blue-500/40 transition-all"
               >
                 <div className="flex justify-between items-start mb-4">
                   <span className="text-xs font-mono text-blue-400">
