@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import SectionTitle from "./sectionTitle/SectionTitle";
 import ProjectCard from "./ProjectCard";
 
@@ -98,15 +98,14 @@ const Projects = () => {
     return true;
   });
 
-  // কার্ড অ্যানিমেশন ভেরিয়েন্ট
-  const cardVariants = {
+  const cardVariants: Variants = {
     hidden: { opacity: 0, y: 30, scale: 0.95 },
     visible: (index: number) => ({
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        delay: index * 0.1, // প্রতিটি কার্ডের জন্য আলাদা ডিলে
+        delay: index * 0.1,
         duration: 0.5,
         ease: "easeOut",
       },
@@ -151,11 +150,11 @@ const Projects = () => {
               <motion.div
                 key={project.id}
                 layout
-                custom={index} // ইনডেক্স পাস করা হচ্ছে ডিলের জন্য
+                custom={index}
                 variants={cardVariants}
                 initial="hidden"
-                whileInView="visible" // ভিউপোর্টে আসলে অ্যানিমেট হবে
-                viewport={{ once: true, amount: 0.2 }} // একবার হবে এবং ২০% ভিউ হলে শুরু হবে
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
                 exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
                 className="w-full h-full"
               >

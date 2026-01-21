@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
@@ -90,7 +91,7 @@ const Hero: React.FC = () => {
                 variants={textItemVariants}
                 className="text-5xl lg:text-7xl font-black text-slate-600 dark:text-white mb-4 leading-[1.1]"
               >
-                Hi, I'm <span className="text-blue-600">Asif Hosen</span>
+                Hi, I'm <span className="text-blue-600">Asif Hosen </span>
               </motion.h1>
 
               <motion.div variants={textItemVariants} className="mb-6 h-12">

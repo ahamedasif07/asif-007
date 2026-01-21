@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import SectionTitle from "./sectionTitle/SectionTitle";
 
 // Technical Icons
@@ -147,17 +147,17 @@ const SkillsSection: React.FC = () => {
   const currentSkills =
     activeTab === "technical" ? technicalSkills : softSkills;
 
-  // কার্ড অ্যানিমেশন ভেরিয়েন্ট (Individual Entrance)
-  const cardVariants = {
+  // কার্ড অ্যানিমেশন ভেরিয়েন্ট with explicit Type
+  const cardVariants: Variants = {
     hidden: { opacity: 0, y: 40, scale: 0.8 },
     visible: (index: number) => ({
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        delay: index * 0.1, // প্রতিটি কার্ডের জন্য আলাদা ডিলে (Stagger effect)
+        delay: index * 0.1,
         duration: 0.5,
-        ease: [0.22, 1, 0.36, 1], // প্রফেশনাল ইজিং
+        ease: [0.22, 1, 0.36, 1],
       },
     }),
   };
@@ -175,10 +175,10 @@ const SkillsSection: React.FC = () => {
 
         <div className="text-center mb-16">
           <div className="flex justify-center mt-6 space-x-3 md:space-x-4 bg-slate-900/50 w-fit mx-auto p-1.5 rounded-full border border-slate-800">
-            {["technical", "soft"].map((tab) => (
+            {(["technical", "soft"] as const).map((tab) => (
               <button
                 key={tab}
-                onClick={() => setActiveTab(tab as any)}
+                onClick={() => setActiveTab(tab)}
                 className={`px-6 py-2.5 md:px-8 md:py-3 rounded-full text-sm md:text-base font-bold transition-all duration-300 capitalize ${
                   activeTab === tab
                     ? "bg-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.3)]"
@@ -191,17 +191,17 @@ const SkillsSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Skills Grid with Individual Animation */}
+        {/* Skills Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 md:gap-6">
           <AnimatePresence mode="popLayout">
             {currentSkills.map((skill, index) => (
               <motion.div
                 key={`${activeTab}-${skill.name}`}
-                custom={index} // ইনডেক্স পাস করা হয়েছে ডিলে ক্যালকুলেট করতে
+                custom={index}
                 variants={cardVariants}
                 initial="hidden"
-                whileInView="visible" // স্ক্রিনে আসলে এনিমেট হবে
-                viewport={{ once: true, amount: 0.1 }} // একবারই হবে যখন ১০% কার্ড দেখা যাবে
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
                 exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
                 whileHover={{
                   y: -10,
