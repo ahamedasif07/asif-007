@@ -7,6 +7,10 @@ import StatsSection from "@/components/StateSection";
 import About from "@/components/About";
 import Projects from "@/components/Proiject";
 import SkillsSection from "@/components/SkillsSection";
+import Contact from "@/components/Contact";
+import TestimonialSlider from "@/components/Testimonials";
+import FAQSection from "@/components/Faq";
+import Footer from "@/components/Footer";
 
 const Home = () => {
   return (
@@ -64,6 +68,10 @@ const Home = () => {
           <About />
           <Projects />
           <SkillsSection />
+          <Contact />
+          <TestimonialSlider />
+          <FAQSection />
+          <Footer />
         </section>
       </div>
     </div>

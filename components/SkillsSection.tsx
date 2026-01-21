@@ -49,41 +49,36 @@ const SkillsSection: React.FC = () => {
   }, []);
 
   const technicalSkills: Skill[] = [
-    { name: "HTML5", level: 95, icon: <SiHtml5 />, color: "text-blue-400" },
-    { name: "CSS3", level: 90, icon: <SiCss3 />, color: "text-blue-500" },
+    { name: "HTML5", level: 95, icon: <SiHtml5 />, color: "text-[#E34F26]" }, // HTML Orange
+    { name: "CSS3", level: 90, icon: <SiCss3 />, color: "text-[#1572B6]" }, // CSS Blue
     {
       name: "Tailwind",
       level: 92,
       icon: <SiTailwindcss />,
-      color: "text-cyan-400",
-    },
+      color: "text-[#06B6D4]",
+    }, // Tailwind Cyan
     {
       name: "JavaScript",
       level: 85,
       icon: <SiJavascript />,
-      color: "text-blue-300",
-    },
+      color: "text-[#F7DF1E]",
+    }, // JS Yellow
     {
       name: "TypeScript",
       level: 80,
       icon: <SiTypescript />,
-      color: "text-blue-600",
-    },
-    { name: "React.js", level: 88, icon: <SiReact />, color: "text-cyan-500" },
+      color: "text-[#3178C6]",
+    }, // TS Blue
+    { name: "React.js", level: 88, icon: <SiReact />, color: "text-[#61DAFB]" }, // React Sky Blue
     {
       name: "Next.js",
       level: 82,
       icon: <SiNextdotjs />,
-      color: "text-slate-200",
-    },
-    { name: "PHP", level: 75, icon: <SiPhp />, color: "text-blue-400" },
-    {
-      name: "GitHub/Git",
-      level: 85,
-      icon: <SiGithub />,
-      color: "text-slate-400",
-    },
-    { name: "Figma", level: 90, icon: <SiFigma />, color: "text-blue-200" },
+      color: "text-[#FFFFFF]",
+    }, // Next.js White
+    { name: "PHP", level: 75, icon: <SiPhp />, color: "text-[#777BB4]" }, // PHP Purple/Blue
+    { name: "GitHub", level: 85, icon: <SiGithub />, color: "text-[#fafafa]" }, // GitHub White/Gray
+    { name: "Figma", level: 90, icon: <SiFigma />, color: "text-[#F24E1E]" }, // Figma Red/Orange
   ];
 
   const softSkills: Skill[] = [
@@ -91,61 +86,61 @@ const SkillsSection: React.FC = () => {
       name: "Problem Solving",
       level: 90,
       icon: <Lightbulb size={40} />,
-      color: "text-blue-400",
+      color: "text-[#FACC15]",
     },
     {
       name: "Teamwork",
       level: 95,
       icon: <Users size={40} />,
-      color: "text-cyan-400",
+      color: "text-[#60A5FA]",
     },
     {
       name: "Time Management",
       level: 85,
       icon: <Clock size={40} />,
-      color: "text-indigo-400",
+      color: "text-[#F87171]",
     },
     {
       name: "Communication",
       level: 88,
       icon: <MessageSquare size={40} />,
-      color: "text-blue-300",
+      color: "text-[#34D399]",
     },
     {
       name: "Adaptability",
       level: 92,
       icon: <Zap size={40} />,
-      color: "text-sky-400",
+      color: "text-[#A78BFA]",
     },
     {
       name: "Critical Thinking",
       level: 85,
       icon: <Brain size={40} />,
-      color: "text-blue-500",
+      color: "text-[#EC4899]",
     },
     {
       name: "Project Management",
       level: 80,
       icon: <Target size={40} />,
-      color: "text-cyan-500",
+      color: "text-[#FB923C]",
     },
     {
       name: "Quick Learner",
       level: 95,
       icon: <Rocket size={40} />,
-      color: "text-blue-400",
+      color: "text-[#22D3EE]",
     },
     {
       name: "Attention to Detail",
       level: 88,
       icon: <Search size={40} />,
-      color: "text-indigo-300",
+      color: "text-[#818CF8]",
     },
     {
       name: "Responsibility",
       level: 98,
       icon: <ShieldCheck size={40} />,
-      color: "text-blue-200",
+      color: "text-[#4ADE80]",
     },
   ];
 
@@ -154,7 +149,7 @@ const SkillsSection: React.FC = () => {
 
   return (
     <section className="max-w-[1400px] mx-auto text-white py-20 px-4 relative overflow-hidden">
-      {/* Soft Background Glows (Blue focused) */}
+      {/* Subtle Background Glows */}
       <div className="absolute top-[-5%] left-[-5%] w-[35%] h-[35%] bg-blue-600/5 blur-[100px] rounded-full"></div>
       <div className="absolute bottom-[-5%] right-[-5%] w-[35%] h-[35%] bg-cyan-600/5 blur-[100px] rounded-full"></div>
 
@@ -165,7 +160,7 @@ const SkillsSection: React.FC = () => {
         </div>
 
         <div className="text-center mb-16">
-          {/* Tabs Control - Blue Theme */}
+          {/* Tabs Control */}
           <div className="flex justify-center mt-6 space-x-3 md:space-x-4 bg-slate-900/50 w-fit mx-auto p-1.5 rounded-full border border-slate-800">
             <button
               onClick={() => setActiveTab("technical")}
@@ -206,18 +201,18 @@ const SkillsSection: React.FC = () => {
                 whileHover={{ y: -8, transition: { duration: 0.2 } }}
                 className="group relative bg-[#0f172a]/40 backdrop-blur-md border border-slate-800 p-6 rounded-[2rem] flex flex-col items-center text-center hover:border-blue-500/30 hover:bg-slate-800/40 transition-all duration-300 shadow-xl"
               >
-                {/* Icon with subtle Blue Glow */}
+                {/* Brand Real Color Icon */}
                 <div
-                  className={`text-5xl mb-4 transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.5)] ${skill.color}`}
+                  className={`text-5xl mb-4 transition-all duration-500 group-hover:scale-110 drop-shadow-md ${skill.color}`}
                 >
                   {skill.icon}
                 </div>
 
-                <h4 className="text-sm md:text-base font-bold text-slate-200 group-hover:text-blue-300 mb-3">
+                <h4 className="text-sm md:text-base font-bold text-slate-200 group-hover:text-white mb-3">
                   {skill.name}
                 </h4>
 
-                {/* Progress Bar Container - Blue Gradient */}
+                {/* Progress Bar Container */}
                 <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden mb-2">
                   <motion.div
                     initial={{ width: 0 }}
