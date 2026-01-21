@@ -93,7 +93,7 @@ const NavBar: React.FC = () => {
         isFixed ? "fixed top-2 left-0" : "relative mt-6"
       }`}
     >
-      <div className="max-w-[1300px] mx-auto px-4 md:px-8">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-8">
         <nav
           ref={navRef}
           className={`relative border border-blue-500/30 rounded-2xl backdrop-blur-xl transition-shadow bg-black/20 ${
