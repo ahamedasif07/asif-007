@@ -11,7 +11,6 @@ import TypingTitle from "./TypingText";
 const Hero: React.FC = () => {
   const particleContainerRef = useRef<HTMLDivElement | null>(null);
 
-  // টেক্সট আইটেম ভেরিয়েন্ট (Professional Slide-up)
   const textItemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
@@ -31,7 +30,7 @@ const Hero: React.FC = () => {
 
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
-    // Particle GSAP Animation logic remains same...
+
     const container = particleContainerRef.current;
     if (container) {
       const particleCount = 40;
@@ -107,32 +106,28 @@ const Hero: React.FC = () => {
                   Frontend Developer
                 </span>{" "}
                 dedicated to building immersive and functional web applications.
-                Programming isn't just a job; it's my{" "}
-                <span className="text-blue-700 font-bold">Heart</span>.
               </motion.p>
 
               <motion.div
                 variants={textItemVariants}
                 className="flex flex-wrap gap-5 justify-center lg:justify-start"
               >
-                {/* Contact Button */}
                 <motion.button
                   whileHover={{ y: -5 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => handleScroll("contact")}
-                  className="px-10 py-4 bg-blue-700 text-white rounded-full font-bold shadow-xl shadow-blue-500/20 hover:bg-blue-700 transition-all"
+                  className="px-10 py-4 bg-blue-700 text-white rounded-full font-bold shadow-xl shadow-blue-500/20 transition-all"
                 >
                   Contact Me
                 </motion.button>
 
-                {/* Download CV Button */}
                 <motion.a
-                  href="/asif-resume.pdf" // আপনার public ফোল্ডারে এই নামে ফাইলটি রাখুন
+                  href="/asif-resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ y: -5 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-10 py-4 border-2 border-blue-700  text-blue-700 rounded-full font-bold flex items-center gap-2 bg-transparent dark:hover:bg-slate-900 transition-all"
+                  className="px-10 py-4 border-2 border-blue-700 text-blue-700 rounded-full font-bold flex items-center gap-2 bg-transparent dark:hover:bg-slate-900 transition-all"
                 >
                   Download CV
                   <svg
@@ -154,7 +149,7 @@ const Hero: React.FC = () => {
               </motion.div>
             </motion.div>
 
-            {/* Right Section - Image */}
+            {/* Right Section - Image with Black Fade Overlay */}
             <div className="flex md:w-1/2 justify-center relative mt-16 lg:mt-0">
               <div
                 ref={particleContainerRef}
@@ -175,17 +170,21 @@ const Hero: React.FC = () => {
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  className="md:w-[500px] w-[300px] h-[450px] md:h-[600px] overflow-hidden mask-gradient"
+                  className="relative md:w-[500px] w-[300px] h-[450px] md:h-[600px] overflow-hidden mask-gradient"
                 >
                   <Image
                     src={asifImage}
                     alt="Asif Hosen"
                     priority
-                    className="object-contain w-full h-full drop-shadow-[0_20px_50px_rgba(59,130,246,0.3)]"
+                    className="object-contain w-full h-full"
                   />
+
+                  {/* --- Black Overlay Gradient --- */}
+                  <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black via-black/40 to-transparent z-20" />
                 </motion.div>
-                {/* Image Glow */}
-                <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-2/3 h-24 bg-blue-500/20 blur-[100px] -z-10 rounded-full" />
+
+                {/* Blue Glow effect below image */}
+                <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-2/3 h-24 bg-blue-500/10 blur-[100px] -z-10 rounded-full" />
               </motion.div>
             </div>
           </div>
@@ -196,10 +195,10 @@ const Hero: React.FC = () => {
         .mask-gradient {
           -webkit-mask-image: linear-gradient(
             to bottom,
-            black 80%,
+            black 75%,
             transparent 100%
           );
-          mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+          mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
         }
       `}</style>
     </div>

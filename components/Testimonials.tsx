@@ -16,7 +16,7 @@ const testimonials = [
     name: "Arif Hosen Jibon",
     position: "SSL Wireless - DevOps Engineer",
     feedback:
-      "He is such a hard-working man who does not know how to give up. I know he will shine in any tech stack he chooses.",
+      "A hard-working developer with a never-give-up attitude. I'm confident he will excel in any tech stack he chooses.",
     image:
       "https://i.ibb.co/YBTZpFdM/Whats-App-Image-2025-02-06-at-08-59-38-92f3b142.jpg",
   },
@@ -24,14 +24,14 @@ const testimonials = [
     name: "Jorna Katun",
     position: "Software Engineer - SSL",
     feedback:
-      "Creative mindset and technically sound. He handles complex UI challenges efficiently and always delivers clean code.",
+      "Creative and technically sound. He efficiently solves complex UI challenges and always delivers clean, maintainable code.",
     image: "https://i.ibb.co/4gmjTSk4/jorna.jpg",
   },
   {
     name: "Shoiab Sheikh Samy",
     position: "Full Stack Developer",
     feedback:
-      "A passionate programming enthusiast. His dedication to learning new frameworks and tools is truly inspiring.",
+      "A true programming enthusiast. His dedication to mastering new frameworks and modern tools is truly inspiring.",
     image:
       "https://i.ibb.co/snHdHCy/Whats-App-Image-2025-02-06-at-08-51-41-a52d4721.jpg",
   },
@@ -39,7 +39,7 @@ const testimonials = [
     name: "Tanvir Ahmed",
     position: "Senior React Developer",
     feedback:
-      "Excellent eye for detail. His ability to convert complex Figma designs into high-performance React components is remarkable.",
+      "Exceptional eye for detail. He expertly transforms complex Figma designs into high-performance React components.",
     image:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200",
   },
@@ -47,7 +47,7 @@ const testimonials = [
     name: "Rakibul Islam",
     position: "PHP Laravel Expert",
     feedback:
-      "Great at backend logic and database optimization. A reliable developer who understands the core of scalable applications.",
+      "Expert in backend logic and database optimization. A reliable developer for building scalable, high-quality applications.",
     image:
       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200&h=200",
   },
@@ -55,7 +55,7 @@ const testimonials = [
     name: "Mahfuzur Rahman",
     position: "Cyber Security Analyst",
     feedback:
-      "Very conscious about security best practices. His code is not only functional but also secure against common vulnerabilities.",
+      "Focused on security best practices. He ensures code is functional, robust, and safe from common vulnerabilities.",
     image:
       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200&h=200",
   },

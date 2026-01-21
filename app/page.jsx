@@ -81,9 +81,13 @@ const Home = () => {
         <section id="contact">
           <Contact />
         </section>
+        <section id="feedback">
+          <TestimonialSlider />
+        </section>
+        <section id="faq">
+          <FAQSection />
+        </section>
 
-        <TestimonialSlider />
-        <FAQSection />
         <Footer />
       </div>
     </div>
