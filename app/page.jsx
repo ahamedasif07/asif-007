@@ -2,11 +2,14 @@ import Hero from "@/components/Hero";
 import NavBar from "@/components/Navbar";
 import Particles from "@/components/Particles";
 import LiquidEther from "@/components/LiquidEther";
+import SocialMedia from "@/components/SocailMedia";
 
 const Home = () => {
   return (
     <div className="relative w-full min-h-screen">
-      {/* ১. Full Page Background: এটি ফিক্সড থাকবে পুরো সাইটে */}
+      <div className="absolute right-[60px] md:right-[115px] top-[100px] md:top-[280px]">
+        <SocialMedia />
+      </div>
       <div className="fixed inset-0 z-[-2] pointer-events-none">
         <LiquidEther
           colors={["#52409C", "#136AA0", "#290B8E"]}
