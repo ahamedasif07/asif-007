@@ -5,6 +5,7 @@ import LiquidEther from "@/components/LiquidEther";
 import SocialMedia from "@/components/SocailMedia";
 import StatsSection from "@/components/StateSection";
 import About from "@/components/About";
+import Projects from "@/components/Proiject";
 
 const Home = () => {
   return (
@@ -60,6 +61,7 @@ const Home = () => {
         <section>
           <StatsSection />
           <About />
+          <Projects />
         </section>
       </div>
     </div>

@@ -114,7 +114,7 @@ const About: React.FC = () => {
   return (
     <div
       id="About"
-      className="max-w-[1400px] px-4 mx-auto overflow-hidden bg-black text-white py-20"
+      className="max-w-[1400px] px-4 mx-auto overflow-hidden  text-white py-20"
     >
       <div className="mx-auto">
         <div className="flex justify-center mb-[60px]">
