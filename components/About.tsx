@@ -1,14 +1,15 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-
-import { FaBook } from "react-icons/fa";
+import { FaBook, FaBriefcase } from "react-icons/fa";
 import AOS from "aos";
 import "aos/dist/aos.css";
+// motion এবং Variants টাইপ ইমপোর্ট করা হয়েছে
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import SectionTitle from "./sectionTitle/SectionTitle";
 import ImageComparisonSlider from "./ImageComparisonSlider";
 
-// ১. টাইপ ইন্টারফেস ডিফাইন করা
+// ১. ডাটা ইন্টারফেস
 interface Education {
   id: number;
   schoolName: string;
@@ -25,8 +26,35 @@ interface Experience {
   duration: string;
 }
 
+// ২. ফ্রেমার মোশন ভেরিয়েন্ট টাইপ ডিক্লারেশন
+const containerVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      staggerChildren: 0.15, // আইটেমগুলো একে একে আসার গ্যাপ
+      ease: "easeOut",
+    },
+  },
+  exit: {
+    opacity: 0,
+    x: -30,
+    transition: { duration: 0.3, ease: "easeIn" },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, x: 40 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { type: "spring", stiffness: 120, damping: 12 },
+  },
+};
+
 const About: React.FC = () => {
-  // ২. স্টেটের জন্য টাইপ ডিফাইন করা
   const [activeSection, setActiveSection] = useState<
     "education" | "experience"
   >("education");
@@ -80,18 +108,16 @@ const About: React.FC = () => {
   ];
 
   useEffect(() => {
-    AOS.init({
-      duration: 800,
-      offset: 100,
-      easing: "ease-in-out",
-      once: true,
-    });
+    AOS.init({ duration: 800, offset: 100, easing: "ease-in-out", once: true });
   }, []);
 
   return (
-    <div id="About" className="max-w-[1400px] px-4 mx-auto overflow-hidden">
-      <div className="mx-auto overflow-hidden">
-        <div className="flex justify-center mt-[120px] mb-[60px]">
+    <div
+      id="About"
+      className="max-w-[1400px] px-4 mx-auto overflow-hidden bg-black text-white py-20"
+    >
+      <div className="mx-auto">
+        <div className="flex justify-center mb-[60px]">
           <SectionTitle title="ABOUT ME" />
         </div>
 
@@ -103,104 +129,80 @@ const About: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Side: Details */}
-          <div data-aos="fade-left" className="lg:w-1/2 w-full py-4">
-            <div className="flex flex-shrink-0 flex-col gap-4 md:flex-row">
-              <button
-                onClick={() => setActiveSection("education")}
-                className={`px-6 py-3 w-full rounded-lg border transition duration-300 shadow-md ${
-                  activeSection === "education"
-                    ? "bg-blue-600 border-blue-600 text-white shadow-lg shadow-blue-500/50"
-                    : "bg-black border-blue-600/50 text-white hover:border-blue-500"
-                }`}
-              >
-                Education
-              </button>
-
-              <button
-                onClick={() => setActiveSection("experience")}
-                className={`px-6 py-3 w-full rounded-lg border transition duration-300 ${
-                  activeSection === "experience"
-                    ? "bg-blue-600 border-blue-600 text-white shadow-lg shadow-blue-500/50"
-                    : "bg-black border-blue-600/50 text-white hover:border-blue-500"
-                }`}
-              >
-                Experience
-              </button>
+          {/* Right Side: Animated Content */}
+          <div className="lg:w-1/2 w-full">
+            {/* Tab Buttons */}
+            <div className="flex flex-col gap-4 md:flex-row mb-8">
+              {(["education", "experience"] as const).map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveSection(tab)}
+                  className={`px-8 py-3 w-full rounded-lg border font-semibold capitalize transition-all duration-300 ${
+                    activeSection === tab
+                      ? "bg-blue-600 border-blue-600 shadow-[0_0_20px_rgba(37,99,235,0.4)]"
+                      : "bg-transparent border-blue-600/30 hover:border-blue-500"
+                  }`}
+                >
+                  {tab}
+                </button>
+              ))}
             </div>
 
-            <div className="mt-4 rounded-md">
-              {activeSection === "education" ? (
-                <div>
-                  <p className="text-[14px] text-gray-200">
-                    I&apos;m a CSE student with over three years + of web
-                    development experience. As a creative person and project
-                    leader, I&apos;ve been dedicated to learning various
-                    programming languages and modern technologies.
+            {/* Content Area */}
+            <div className="min-h-[450px]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeSection}
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                >
+                  <p className="text-[15px] text-gray-300 mb-8 leading-relaxed italic border-l-4 border-blue-600 pl-4">
+                    {activeSection === "education"
+                      ? "I am a CSE student with 3+ years of web development experience, dedicated to mastering modern tech stacks."
+                      : "Professional journey as a Front-End Developer, focusing on creating responsive and user-centric web applications."}
                   </p>
-                  <div className="mt-4 overflow-hidden">
-                    {educationData.map((education, index) => {
-                      const aosEffects = ["fade-right", "fade-up", "fade-left"];
-                      return (
-                        <div
-                          className="border flex gap-5 items-center border-blue-600 p-2 mb-2"
-                          key={education.id}
-                        >
-                          <div className="text-3xl p-[10px] hover:text-gray-200 transition-all duration-300 ease-in-out hover:border-blue-600 border border-gray-300 text-blue-600">
+
+                  <div className="space-y-4">
+                    {(activeSection === "education"
+                      ? educationData
+                      : workExperience
+                    ).map((item) => (
+                      <motion.div
+                        key={item.id}
+                        variants={itemVariants}
+                        whileHover={{ scale: 1.02, x: 10 }}
+                        className="group flex gap-5 items-center border border-blue-600/20 p-5 rounded-xl bg-gradient-to-r from-blue-900/10 to-transparent hover:border-blue-600/60 transition-all shadow-sm"
+                      >
+                        <div className="text-2xl p-4 rounded-lg bg-black border border-blue-600/50 text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                          {activeSection === "education" ? (
                             <FaBook />
-                          </div>
-                          <div data-aos={aosEffects[index % aosEffects.length]}>
-                            <h3 className="text-[15px] font-semibold text-gray-200">
-                              {education.schoolName}
-                            </h3>
-                            <p className="text-[12px] my-[3px] text-blue-600">
-                              {education.examinationName} ({education.gpa})
-                            </p>
-                            <p className="text-[12px] text-gray-300">
-                              ({education.startDate}-{education.endDate})
-                            </p>
-                          </div>
+                          ) : (
+                            <FaBriefcase />
+                          )}
                         </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              ) : (
-                <div>
-                  <p className="text-[14px] text-gray-200">
-                    I&apos;m a CST student with a 4-year Diploma in Computer
-                    Science and Technology. As class CR, I lead with creativity
-                    and innovation, focusing on pursuing a BSC in Software
-                    Engineering and modern technologies.
-                  </p>
-                  <div className="mt-4 overflow-hidden">
-                    {workExperience.map((experience, index) => {
-                      const aosEffects = ["fade-right", "fade-up", "fade-left"];
-                      return (
-                        <div
-                          className="border flex gap-5 items-center border-blue-600 p-2 mb-2"
-                          key={experience.id}
-                        >
-                          <div className="text-3xl p-[10px] hover:text-gray-200 transition-all duration-300 ease-in-out hover:border-blue-600 border border-gray-300 text-blue-600">
-                            <FaBook />
-                          </div>
-                          <div data-aos={aosEffects[index % aosEffects.length]}>
-                            <h3 className="text-[15px] font-semibold text-gray-200">
-                              {experience.work}
-                            </h3>
-                            <p className="text-[12px] my-[3px] text-blue-600">
-                              {experience.position}
-                            </p>
-                            <p className="text-[12px] text-gray-300">
-                              ({experience.duration})
-                            </p>
-                          </div>
+
+                        <div className="flex-1">
+                          <h3 className="text-lg font-bold text-gray-100">
+                            {"schoolName" in item ? item.schoolName : item.work}
+                          </h3>
+                          <p className="text-blue-400 font-medium text-sm">
+                            {"examinationName" in item
+                              ? `${item.examinationName} (${item.gpa})`
+                              : item.position}
+                          </p>
+                          <p className="text-xs text-gray-500 mt-1 uppercase tracking-wider">
+                            {"startDate" in item
+                              ? `${item.startDate} - ${item.endDate}`
+                              : item.duration}
+                          </p>
                         </div>
-                      );
-                    })}
+                      </motion.div>
+                    ))}
                   </div>
-                </div>
-              )}
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
         </div>

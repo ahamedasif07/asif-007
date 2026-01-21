@@ -71,7 +71,7 @@ const StatsSection = () => {
       ref={sectionRef}
       className="bg-transparent py-20 relative overflow-hidden"
     >
-      <div className="max-w-[1400px] mx-auto px-6 ">
+      <div className="max-w-[1400px] mx-auto px-4 ">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 text-center text-white">
           {/* Stat 1 */}
           <div data-aos="zoom-in" className="flex flex-col items-center">

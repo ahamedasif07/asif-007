@@ -40,7 +40,7 @@ const Home = () => {
         <NavBar />
 
         {/* Hero Section: Particles শুধু এই সেকশনের ব্যাকগ্রাউন্ডে থাকবে */}
-        <section className="relative w-full min-h-screen">
+        <section className="relative w-full h-[900px]">
           <div className="absolute inset-0 z-[-1] pointer-events-none">
             <Particles
               particleColors={["#155DFC"]}

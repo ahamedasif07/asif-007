@@ -39,7 +39,7 @@ const ImageComparisonSlider: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto h-[450px] w-full max-w-[500px] select-none">
+    <div className="mx-auto h-[550px] w-full max-w-[600px] select-none">
       <div
         ref={sliderRef}
         onMouseMove={handleMouseMove}
