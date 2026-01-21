@@ -3,6 +3,8 @@ import NavBar from "@/components/Navbar";
 import Particles from "@/components/Particles";
 import LiquidEther from "@/components/LiquidEther";
 import SocialMedia from "@/components/SocailMedia";
+import StatsSection from "@/components/StateSection";
+import About from "@/components/About";
 
 const Home = () => {
   return (
@@ -55,15 +57,9 @@ const Home = () => {
           <Hero />
         </section>
 
-        {/* ৩. পরবর্তী সেকশনসমূহ: এগুলোতে আর Particles দেখা যাবে না */}
-        <section className="h-screen flex items-center justify-center bg-transparent">
-          <h2 className="text-white text-4xl font-bold">
-            Next Section Content
-          </h2>
-        </section>
-
-        <section className="h-screen flex items-center justify-center bg-transparent">
-          <h2 className="text-white text-4xl font-bold">Another Section</h2>
+        <section>
+          <StatsSection />
+          <About />
         </section>
       </div>
     </div>
