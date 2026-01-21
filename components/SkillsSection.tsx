@@ -49,36 +49,36 @@ const SkillsSection: React.FC = () => {
   }, []);
 
   const technicalSkills: Skill[] = [
-    { name: "HTML5", level: 95, icon: <SiHtml5 />, color: "text-[#E34F26]" }, // HTML Orange
-    { name: "CSS3", level: 90, icon: <SiCss3 />, color: "text-[#1572B6]" }, // CSS Blue
+    { name: "HTML5", level: 95, icon: <SiHtml5 />, color: "text-[#E34F26]" },
+    { name: "CSS3", level: 90, icon: <SiCss3 />, color: "text-[#1572B6]" },
     {
       name: "Tailwind",
       level: 92,
       icon: <SiTailwindcss />,
       color: "text-[#06B6D4]",
-    }, // Tailwind Cyan
+    },
     {
       name: "JavaScript",
       level: 85,
       icon: <SiJavascript />,
       color: "text-[#F7DF1E]",
-    }, // JS Yellow
+    },
     {
       name: "TypeScript",
       level: 80,
       icon: <SiTypescript />,
       color: "text-[#3178C6]",
-    }, // TS Blue
-    { name: "React.js", level: 88, icon: <SiReact />, color: "text-[#61DAFB]" }, // React Sky Blue
+    },
+    { name: "React.js", level: 88, icon: <SiReact />, color: "text-[#61DAFB]" },
     {
       name: "Next.js",
       level: 82,
       icon: <SiNextdotjs />,
       color: "text-[#FFFFFF]",
-    }, // Next.js White
-    { name: "PHP", level: 75, icon: <SiPhp />, color: "text-[#777BB4]" }, // PHP Purple/Blue
-    { name: "GitHub", level: 85, icon: <SiGithub />, color: "text-[#fafafa]" }, // GitHub White/Gray
-    { name: "Figma", level: 90, icon: <SiFigma />, color: "text-[#F24E1E]" }, // Figma Red/Orange
+    },
+    { name: "PHP", level: 75, icon: <SiPhp />, color: "text-[#777BB4]" },
+    { name: "GitHub", level: 85, icon: <SiGithub />, color: "text-[#fafafa]" },
+    { name: "Figma", level: 90, icon: <SiFigma />, color: "text-[#F24E1E]" },
   ];
 
   const softSkills: Skill[] = [
@@ -147,63 +147,72 @@ const SkillsSection: React.FC = () => {
   const currentSkills =
     activeTab === "technical" ? technicalSkills : softSkills;
 
+  // কার্ড অ্যানিমেশন ভেরিয়েন্ট (Individual Entrance)
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40, scale: 0.8 },
+    visible: (index: number) => ({
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        delay: index * 0.1, // প্রতিটি কার্ডের জন্য আলাদা ডিলে (Stagger effect)
+        duration: 0.5,
+        ease: [0.22, 1, 0.36, 1], // প্রফেশনাল ইজিং
+      },
+    }),
+  };
+
   return (
     <section className="max-w-[1400px] mx-auto text-white py-20 px-4 relative overflow-hidden">
-      {/* Subtle Background Glows */}
+      {/* Background Glows */}
       <div className="absolute top-[-5%] left-[-5%] w-[35%] h-[35%] bg-blue-600/5 blur-[100px] rounded-full"></div>
       <div className="absolute bottom-[-5%] right-[-5%] w-[35%] h-[35%] bg-cyan-600/5 blur-[100px] rounded-full"></div>
 
       <div className="max-w-6xl mx-auto relative z-10">
-        {/* Title Section */}
         <div className="flex justify-center mb-12">
           <SectionTitle title="MY SKILLS" />
         </div>
 
         <div className="text-center mb-16">
-          {/* Tabs Control */}
           <div className="flex justify-center mt-6 space-x-3 md:space-x-4 bg-slate-900/50 w-fit mx-auto p-1.5 rounded-full border border-slate-800">
-            <button
-              onClick={() => setActiveTab("technical")}
-              className={`px-6 py-2.5 md:px-8 md:py-3 rounded-full text-sm md:text-base font-bold transition-all duration-300 ${
-                activeTab === "technical"
-                  ? "bg-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.3)]"
-                  : "text-slate-400 hover:text-blue-400"
-              }`}
-            >
-              Technical Skills
-            </button>
-            <button
-              onClick={() => setActiveTab("soft")}
-              className={`px-6 py-2.5 md:px-8 md:py-3 rounded-full text-sm md:text-base font-bold transition-all duration-300 ${
-                activeTab === "soft"
-                  ? "bg-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.3)]"
-                  : "text-slate-400 hover:text-blue-400"
-              }`}
-            >
-              Soft Skills
-            </button>
+            {["technical", "soft"].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab as any)}
+                className={`px-6 py-2.5 md:px-8 md:py-3 rounded-full text-sm md:text-base font-bold transition-all duration-300 capitalize ${
+                  activeTab === tab
+                    ? "bg-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.3)]"
+                    : "text-slate-400 hover:text-blue-400"
+                }`}
+              >
+                {tab} Skills
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Skills Grid */}
-        <motion.div
-          layout
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 md:gap-6"
-        >
-          <AnimatePresence mode="wait">
+        {/* Skills Grid with Individual Animation */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 md:gap-6">
+          <AnimatePresence mode="popLayout">
             {currentSkills.map((skill, index) => (
               <motion.div
                 key={`${activeTab}-${skill.name}`}
-                initial={{ opacity: 0, scale: 0.9, y: 15 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: -15 }}
-                transition={{ duration: 0.3, delay: index * 0.04 }}
-                whileHover={{ y: -8, transition: { duration: 0.2 } }}
-                className="group relative bg-[#0f172a]/40 backdrop-blur-md border border-slate-800 p-6 rounded-[2rem] flex flex-col items-center text-center hover:border-blue-500/30 hover:bg-slate-800/40 transition-all duration-300 shadow-xl"
+                custom={index} // ইনডেক্স পাস করা হয়েছে ডিলে ক্যালকুলেট করতে
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible" // স্ক্রিনে আসলে এনিমেট হবে
+                viewport={{ once: true, amount: 0.1 }} // একবারই হবে যখন ১০% কার্ড দেখা যাবে
+                exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
+                whileHover={{
+                  y: -10,
+                  scale: 1.05,
+                  transition: { duration: 0.3 },
+                }}
+                className="group relative bg-[#0f172a]/40 backdrop-blur-md border border-slate-800 p-6 rounded-[2rem] flex flex-col items-center text-center hover:border-blue-500/40 hover:bg-slate-800/60 transition-all duration-300 shadow-2xl"
               >
-                {/* Brand Real Color Icon */}
+                {/* Icon Section */}
                 <div
-                  className={`text-5xl mb-4 transition-all duration-500 group-hover:scale-110 drop-shadow-md ${skill.color}`}
+                  className={`text-5xl mb-4 transition-all duration-500 group-hover:rotate-12 ${skill.color}`}
                 >
                   {skill.icon}
                 </div>
@@ -212,12 +221,16 @@ const SkillsSection: React.FC = () => {
                   {skill.name}
                 </h4>
 
-                {/* Progress Bar Container */}
+                {/* Animated Progress Bar */}
                 <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden mb-2">
                   <motion.div
                     initial={{ width: 0 }}
-                    animate={{ width: `${skill.level}%` }}
-                    transition={{ duration: 1.2, ease: "easeOut" }}
+                    whileInView={{ width: `${skill.level}%` }}
+                    transition={{
+                      duration: 1.5,
+                      delay: index * 0.1,
+                      ease: "circOut",
+                    }}
                     className="h-full bg-gradient-to-r from-blue-600 to-cyan-400"
                   />
                 </div>
@@ -226,12 +239,12 @@ const SkillsSection: React.FC = () => {
                   {skill.level}% expertise
                 </span>
 
-                {/* Subtle blue bottom glow */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-10 h-1 blur-md rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 bg-blue-500"></div>
+                {/* Bottom Glow on Hover */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-12 h-1 blur-lg rounded-full opacity-0 group-hover:opacity-100 bg-blue-500 transition-opacity" />
               </motion.div>
             ))}
           </AnimatePresence>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

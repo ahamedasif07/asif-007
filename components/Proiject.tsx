@@ -1,14 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-
-import AOS from "aos";
-import "aos/dist/aos.css";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SectionTitle from "./sectionTitle/SectionTitle";
 import ProjectCard from "./ProjectCard";
 
-// প্রোজেক্টের টাইপ ডিফাইন করা
 interface Project {
   id: number;
   image: string;
@@ -20,15 +16,6 @@ interface Project {
 }
 
 const Projects = () => {
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      offset: 100,
-      easing: "ease-in-out",
-      once: true,
-    });
-  }, []);
-
   const [filter, setFilter] = useState<"all" | "live" | "working">("all");
 
   const projects: Project[] = [
@@ -38,7 +25,7 @@ const Projects = () => {
         "https://i.ibb.co.com/20sRZcg7/459318469-510183361732201-973057694240494391-n.jpg",
       projectName: "Gorur Ghash",
       projectDescription:
-        "A modern e-commerce platform built with React.js and Tailwind CSS, featuring a fully responsive design.",
+        "A modern e-commerce platform built with React.js and Tailwind CSS.",
       LiveLink: "https://project-gorur-ghash-d7b9.vercel.app/",
       isLive: false,
       isWorking: false,
@@ -48,7 +35,7 @@ const Projects = () => {
       image: "https://i.ibb.co.com/fV87XKLh/Screenshot-33.png",
       projectName: "Sailor",
       projectDescription:
-        "Sailor — A fully functional fashion e-commerce website currently in development.",
+        "Sailor — A fully functional fashion e-commerce website.",
       LiveLink: "https://seilor-project-cu2a.vercel.app/",
       isLive: false,
       isWorking: true,
@@ -57,8 +44,7 @@ const Projects = () => {
       id: 3,
       image: "https://i.ibb.co.com/qYcSsnQj/Screenshot-31.png",
       projectName: "Sharif Bering",
-      projectDescription:
-        "An e-commerce website for mechanical products built with React.js, featuring product listings.",
+      projectDescription: "An e-commerce website for mechanical products.",
       LiveLink: "https://sbmbd.net/",
       isLive: true,
       isWorking: false,
@@ -67,8 +53,7 @@ const Projects = () => {
       id: 4,
       image: "https://i.ibb.co/bMbKVHSG/Screenshot-45.png",
       projectName: "Frish Gosory",
-      projectDescription:
-        "A modern e-commerce shop template built with React.js and Tailwind CSS.",
+      projectDescription: "A modern e-commerce shop template.",
       LiveLink: "https://project-fresh-grocery.vercel.app/",
       isLive: false,
       isWorking: false,
@@ -78,7 +63,7 @@ const Projects = () => {
       image: "https://i.ibb.co.com/gbPXf1T5/Screenshot-20.png",
       projectName: "Scapesync",
       projectDescription:
-        "This project is a fully responsive Next.js application converted from a Figma design.",
+        "Fully responsive Next.js application converted from Figma.",
       LiveLink: "https://scapesync-mauve.vercel.app/",
       isLive: false,
       isWorking: false,
@@ -88,7 +73,7 @@ const Projects = () => {
       image: "https://i.ibb.co/Df6FMcvQ/image-resize.jpg",
       projectName: "Sultan Dine",
       projectDescription:
-        "A visually appealing restaurant website created with React.js, featuring an interactive menu.",
+        "A visually appealing restaurant website created with React.js.",
       LiveLink: "https://ak-asif-sultan-dine.surge.sh/",
       isLive: false,
       isWorking: false,
@@ -99,7 +84,7 @@ const Projects = () => {
         "https://i.ibb.co.com/gLFCzqmL/324268690-3333959940256153-6463376740799483701-n.jpg",
       projectName: "Diagram",
       projectDescription:
-        "An advanced online store using React.js with a user-friendly UI and integrated payment gateway.",
+        "Online store using React.js with integrated payment gateway.",
       LiveLink: "http://ak-asif-diagram.surge.sh",
       isLive: false,
       isWorking: false,
@@ -113,6 +98,21 @@ const Projects = () => {
     return true;
   });
 
+  // কার্ড অ্যানিমেশন ভেরিয়েন্ট
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    visible: (index: number) => ({
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        delay: index * 0.1, // প্রতিটি কার্ডের জন্য আলাদা ডিলে
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    }),
+  };
+
   return (
     <div
       id="Projects"
@@ -124,7 +124,7 @@ const Projects = () => {
         </div>
 
         {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 mt-20 mb-12">
+        <div className="flex flex-wrap justify-center gap-4 mt-10 mb-12">
           {(["all", "live", "working"] as const).map((type) => (
             <button
               key={type}
@@ -144,31 +144,29 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* Project Grid with Framer Motion */}
-        <motion.div
-          layout
-          className="grid place-items-center items-stretch lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 px-4 md:px-0"
-        >
+        {/* Project Grid */}
+        <div className="grid place-items-center items-stretch lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 px-4 md:px-0">
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project) => (
+            {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
                 layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4 }}
+                custom={index} // ইনডেক্স পাস করা হচ্ছে ডিলের জন্য
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible" // ভিউপোর্টে আসলে অ্যানিমেট হবে
+                viewport={{ once: true, amount: 0.2 }} // একবার হবে এবং ২০% ভিউ হলে শুরু হবে
+                exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
                 className="w-full h-full"
               >
                 <ProjectCard project={project} />
               </motion.div>
             ))}
           </AnimatePresence>
-        </motion.div>
+        </div>
 
-        {/* No Projects Found */}
         {filteredProjects.length === 0 && (
-          <div className="text-center py-20 text-gray-500">
+          <div className="text-center py-20 text-gray-500 italic">
             No projects found in this category.
           </div>
         )}

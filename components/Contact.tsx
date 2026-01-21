@@ -14,7 +14,7 @@ import {
   Facebook,
 } from "lucide-react";
 import SectionTitle from "./sectionTitle/SectionTitle";
-import { BasicMap } from "./BasicMap";
+import BangladeshMap from "./BasicMap";
 
 const Contact: React.FC = () => {
   // Variants টাইপ ডিফাইন করে দিলে এরর চলে যাবে
@@ -220,7 +220,7 @@ const Contact: React.FC = () => {
           viewport={{ once: true }}
           className="mt-20 w-full h-[350px] rounded-[2.5rem] overflow-hidden border border-slate-800 grayscale hover:grayscale-0 transition-all duration-700"
         >
-          <BasicMap />
+          <BangladeshMap />
         </motion.div>
       </div>
     </section>

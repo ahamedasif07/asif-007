@@ -27,14 +27,12 @@ const NavBar: React.FC = () => {
     { name: "Contact", id: "contact", description: "Get in touch" },
   ];
 
-  // Scroll logic for sticky header
   useEffect(() => {
     const handleScroll = () => setIsFixed(window.scrollY > 100);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // GSAP Animation Logic
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const navEl = navRef.current;
@@ -46,7 +44,6 @@ const NavBar: React.FC = () => {
       const tl = gsap.timeline({ paused: true });
 
       tl.to(navEl, {
-        // মোবাইলে height 'auto' করা হয়েছে যাতে কন্টেন্ট অনুযায়ী জায়গা নেয়
         height: window.innerWidth < 768 ? "auto" : 280,
         backgroundColor: "rgba(10, 10, 10, 0.98)",
         duration: 0.4,
@@ -82,8 +79,16 @@ const NavBar: React.FC = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-      if (isExpanded) toggleMenu();
+      // মেনু ক্লোজ করার জন্য অ্যানিমেশন রিভার্স করা
+      if (isExpanded) {
+        tlRef.current?.reverse().eventCallback("onReverseComplete", () => {
+          setIsExpanded(false);
+          // অ্যানিমেশন শেষ হলে স্ক্রল করা
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      } else {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
   };
 
@@ -102,44 +107,36 @@ const NavBar: React.FC = () => {
               : "shadow-md overflow-hidden"
           }`}
         >
-          {/* Top Bar - sticky added to keep logo/burger visible while scrolling menu */}
+          {/* Top Bar */}
           <div className="h-[64px] sticky top-0 flex items-center justify-between px-6 z-30 bg-black/10 backdrop-blur-md">
-            {/* Logo */}
             <div
               className="flex items-center gap-0 cursor-pointer"
               onClick={() => scrollToSection("hero")}
             >
               <Image height={35} width={35} src={aLogo} alt="logo" />
-              <h2 className="text-2xl font-bold text-transparent bg-gradient-to-r from-[#1A5685] to-[#63c7ee] bg-clip-text">
+              <h2 className="text-2xl font-bold text-transparent bg-gradient-to-r from-[#1A5685] to-[#63c7ee] bg-clip-text ml-2">
                 SIF
               </h2>
             </div>
 
-            {/* Custom Animated Hamburger */}
             <button
               onClick={toggleMenu}
               className="flex flex-col gap-1.5 justify-center items-end group w-10 h-10"
               aria-label="Toggle Menu"
             >
               <span
-                className={`h-[2px] bg-blue-500 transition-all duration-300 ${
-                  isExpanded ? "w-8 translate-y-[8px] rotate-45" : "w-8"
-                }`}
+                className={`h-[2px] bg-blue-500 transition-all duration-300 ${isExpanded ? "w-8 translate-y-[8px] rotate-45" : "w-8"}`}
               />
               <span
-                className={`h-[2px] bg-blue-400 transition-all duration-300 ${
-                  isExpanded ? "opacity-0" : "w-5"
-                }`}
+                className={`h-[2px] bg-blue-400 transition-all duration-300 ${isExpanded ? "opacity-0" : "w-5"}`}
               />
               <span
-                className={`h-[2px] bg-blue-300 transition-all duration-300 ${
-                  isExpanded ? "w-8 -translate-y-[8px] -rotate-45" : "w-6"
-                }`}
+                className={`h-[2px] bg-blue-300 transition-all duration-300 ${isExpanded ? "w-8 -translate-y-[8px] -rotate-45" : "w-6"}`}
               />
             </button>
           </div>
 
-          {/* Expanded Content (Cards) */}
+          {/* Expanded Content */}
           <div
             className={`card-content p-6 flex flex-col md:flex-row gap-4 transition-all ${
               isExpanded ? "flex opacity-100" : "hidden opacity-0"

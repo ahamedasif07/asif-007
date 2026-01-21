@@ -18,6 +18,7 @@ const Home = () => {
       <div className="absolute right-[60px] md:right-[115px] top-[100px] md:top-[280px]">
         <SocialMedia />
       </div>
+
       <div className="fixed inset-0 z-[-2] pointer-events-none">
         <LiquidEther
           colors={["#52409C", "#136AA0", "#290B8E"]}
@@ -41,12 +42,11 @@ const Home = () => {
         />
       </div>
 
-      {/* ২. Foreground Content */}
       <div className="relative z-10 w-full">
         <NavBar />
 
-        {/* Hero Section: Particles শুধু এই সেকশনের ব্যাকগ্রাউন্ডে থাকবে */}
-        <section className="relative w-full h-[900px]">
+        {/* Hero Section */}
+        <section id="hero" className="relative w-full h-[900px]">
           <div className="absolute inset-0 z-[-1] pointer-events-none">
             <Particles
               particleColors={["#155DFC"]}
@@ -63,16 +63,28 @@ const Home = () => {
           <Hero />
         </section>
 
-        <section>
-          <StatsSection />
+        {/* অন্যান্য সেকশনগুলোতে ID যোগ করা হয়েছে */}
+        <StatsSection />
+
+        <section id="about">
           <About />
-          <Projects />
-          <SkillsSection />
-          <Contact />
-          <TestimonialSlider />
-          <FAQSection />
-          <Footer />
         </section>
+
+        <section id="projects">
+          <Projects />
+        </section>
+
+        <section id="skills">
+          <SkillsSection />
+        </section>
+
+        <section id="contact">
+          <Contact />
+        </section>
+
+        <TestimonialSlider />
+        <FAQSection />
+        <Footer />
       </div>
     </div>
   );
