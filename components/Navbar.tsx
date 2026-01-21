@@ -111,7 +111,7 @@ const NavBar: React.FC = () => {
       <div className="max-w-[1450px] mx-auto px-4 md:px-8">
         <nav
           ref={navRef}
-          className={`relative border border-blue-500/20 rounded-[2rem] backdrop-blur-2xl transition-all bg-black/40 ${
+          className={`relative border border-blue-600/70 rounded-[2rem] backdrop-blur-2xl transition-all bg-black/40 ${
             isExpanded
               ? "shadow-[0_0_50px_rgba(59,130,246,0.15)] overflow-y-auto max-h-[90vh]"
               : "shadow-md overflow-hidden"
