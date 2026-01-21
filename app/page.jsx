@@ -6,6 +6,7 @@ import SocialMedia from "@/components/SocailMedia";
 import StatsSection from "@/components/StateSection";
 import About from "@/components/About";
 import Projects from "@/components/Proiject";
+import SkillsSection from "@/components/SkillsSection";
 
 const Home = () => {
   return (
@@ -62,6 +63,7 @@ const Home = () => {
           <StatsSection />
           <About />
           <Projects />
+          <SkillsSection />
         </section>
       </div>
     </div>

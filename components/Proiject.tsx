@@ -116,7 +116,7 @@ const Projects = () => {
   return (
     <div
       id="Projects"
-      className="max-w-[1400px] px-4 mx-auto overflow-hidden bg-black py-20"
+      className="max-w-[1400px] px-4 mx-auto overflow-hidden py-20"
     >
       <div className="py-[60px] mx-auto">
         <div className="flex justify-center mt-[80px] mb-[20px]">
