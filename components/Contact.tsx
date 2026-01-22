@@ -1,8 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import React from "react";
-// Variants টাইপ ইম্পোর্ট করুন
+import React, { useState } from "react";
 import { motion, Variants } from "framer-motion";
 import {
   Mail,
@@ -16,8 +15,21 @@ import {
 } from "lucide-react";
 import SectionTitle from "./sectionTitle/SectionTitle";
 import BangladeshMap from "./BasicMap";
+import emailjs from "@emailjs/browser";
 
 const Contact: React.FC = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
+
   // Variants টাইপ ডিফাইন করে দিলে এরর চলে যাবে
   const cardVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
@@ -28,13 +40,59 @@ const Contact: React.FC = () => {
     }),
   };
 
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setStatus({ type: null, message: "" });
+
+    try {
+      // EmailJS configuration - এইগুলো replace করতে হবে তোমার actual values দিয়ে
+      const serviceID = "service_iv1ndgt"; // EmailJS Service ID
+      const templateID = "template_od2fe1g"; // EmailJS Template ID
+      const publicKey = "jbdXemyw4PRjLc14f"; // EmailJS Public Key
+
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: "ahamedasif01729@gmail.com",
+      };
+
+      await emailjs.send(serviceID, templateID, templateParams, publicKey);
+
+      setStatus({
+        type: "success",
+        message: "Message sent successfully! I'll get back to you soon.",
+      });
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error) {
+      console.error("Email send error:", error);
+      setStatus({
+        type: "error",
+        message: "Failed to send message. Please try again.",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section
       className="max-w-[1400px] mx-auto text-white py-24 px-4 relative overflow-hidden"
       id="contact"
     >
       {/* Background Decorative Glows */}
-      <div className="absolute top-[10%] right-[-5%] w-[30%] h-[30%]  blur-[120px] rounded-full"></div>
+      <div className="absolute top-[10%] right-[-5%] w-[30%] h-[30%] blur-[120px] rounded-full"></div>
       <div className="absolute bottom-[10%] left-[-5%] w-[30%] h-[30%] blur-[120px] rounded-full"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -72,8 +130,8 @@ const Contact: React.FC = () => {
                 {
                   icon: <Phone className="text-cyan-500" />,
                   label: "Call Me",
-                  value: "+880 127149634",
-                  link: "tel:+880 1729149634",
+                  value: "+880 1729149634",
+                  link: "tel:+8801729149634",
                 },
                 {
                   icon: <MapPin className="text-blue-400" />,
@@ -85,7 +143,7 @@ const Contact: React.FC = () => {
                 <motion.a
                   key={i}
                   href={info.link}
-                  custom={i} // এখানে custom prop পাঠানো হচ্ছে
+                  custom={i}
                   initial="hidden"
                   whileInView="visible"
                   variants={cardVariants}
@@ -137,6 +195,8 @@ const Contact: React.FC = () => {
                   <motion.a
                     key={i}
                     href={social.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     whileHover={{ y: -5, scale: 1.1 }}
                     className={`w-12 h-12 flex items-center justify-center rounded-full bg-slate-900 border border-slate-800 transition-all ${social.color}`}
                   >
@@ -155,9 +215,24 @@ const Contact: React.FC = () => {
             viewport={{ once: true }}
             className="lg:col-span-7 bg-[#0f172a]/40 backdrop-blur-xl border border-slate-800 p-8 md:p-10 rounded-[2.5rem] shadow-2xl"
           >
+            {/* Status Message */}
+            {status.type && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className={`mb-6 p-4 rounded-2xl ${
+                  status.type === "success"
+                    ? "bg-green-500/10 border border-green-500/50 text-green-400"
+                    : "bg-red-500/10 border border-red-500/50 text-red-400"
+                }`}
+              >
+                {status.message}
+              </motion.div>
+            )}
+
             <form
               className="grid grid-cols-1 md:grid-cols-2 gap-6"
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={handleSubmit}
             >
               <div className="space-y-2">
                 <label className="text-sm font-medium text-slate-400 ml-1">
@@ -165,7 +240,11 @@ const Contact: React.FC = () => {
                 </label>
                 <input
                   type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   placeholder="Ahamed Asif"
+                  required
                   className="w-full bg-slate-900/50 border border-slate-800 rounded-2xl px-5 py-4 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
                 />
               </div>
@@ -175,7 +254,11 @@ const Contact: React.FC = () => {
                 </label>
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="ahamedasif01729@gmail.com"
+                  required
                   className="w-full bg-slate-900/50 border border-slate-800 rounded-2xl px-5 py-4 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
                 />
               </div>
@@ -185,7 +268,11 @@ const Contact: React.FC = () => {
                 </label>
                 <input
                   type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
                   placeholder="Project Inquiry"
+                  required
                   className="w-full bg-slate-900/50 border border-slate-800 rounded-2xl px-5 py-4 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
                 />
               </div>
@@ -195,18 +282,28 @@ const Contact: React.FC = () => {
                 </label>
                 <textarea
                   rows={5}
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   placeholder="Tell me about your project..."
+                  required
                   className="w-full bg-slate-900/50 border border-slate-800 rounded-2xl px-5 py-4 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all resize-none"
                 ></textarea>
               </div>
               <div className="md:col-span-2 mt-2">
                 <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full md:w-max px-10 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-blue-600/20"
+                  type="submit"
+                  disabled={loading}
+                  whileHover={{ scale: loading ? 1 : 1.02 }}
+                  whileTap={{ scale: loading ? 1 : 0.98 }}
+                  className={`w-full md:w-max px-10 py-4 ${
+                    loading
+                      ? "bg-blue-600/50 cursor-not-allowed"
+                      : "bg-blue-600 hover:bg-blue-700"
+                  } text-white font-bold rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-blue-600/20`}
                 >
-                  Send Message
-                  <Send size={20} />
+                  {loading ? "Sending..." : "Send Message"}
+                  <Send size={20} className={loading ? "animate-pulse" : ""} />
                 </motion.button>
               </div>
             </form>
