@@ -78,7 +78,7 @@ const Hero: React.FC = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="md:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left"
+              className="md:w-1/2 flex flex-col items-center pl-0 md:pl-[80px]  lg:items-start text-center lg:text-left"
             >
               <motion.span
                 variants={textItemVariants}
@@ -151,7 +151,7 @@ const Hero: React.FC = () => {
             </motion.div>
 
             {/* Right Section - Image with Black Fade Overlay */}
-            <div className="flex md:w-1/2 justify-center relative mt-16 lg:mt-0">
+            <div className="flex md:w-1/2 justify-center md:justify-end relative mt-16 lg:mt-0">
               <div
                 ref={particleContainerRef}
                 className="absolute inset-0 z-0 pointer-events-none"
@@ -171,7 +171,7 @@ const Hero: React.FC = () => {
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  className="relative md:w-[500px] w-[300px] h-[450px] md:h-[600px] overflow-hidden mask-gradient"
+                  className="relative md:w-[500px] w-[350px] h-[500px] md:h-[600px] overflow-hidden mask-gradient"
                 >
                   <Image
                     src={asifImage}
@@ -181,7 +181,7 @@ const Hero: React.FC = () => {
                   />
 
                   {/* --- Black Overlay Gradient --- */}
-                  <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black via-black/40 to-transparent z-20" />
+                  <div className="absolute inset-x-0 bottom-0 h-1/9 bg-gradient-to-t from-black via-black/40 to-transparent z-20" />
                 </motion.div>
 
                 {/* Blue Glow effect below image */}
