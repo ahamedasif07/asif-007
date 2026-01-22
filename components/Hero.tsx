@@ -181,7 +181,7 @@ const Hero: React.FC = () => {
                   />
 
                   {/* --- Black Overlay Gradient --- */}
-                  <div className="absolute inset-x-0 bottom-0 h-1/9 bg-gradient-to-t from-black via-black/40 to-transparent z-20" />
+                  <div className="absolute inset-x-0 bottom-0 h-1/9 bg-gradient-to-t from-black/90 via-black/40 w-[280px] left-27 to-transparent z-20" />
                 </motion.div>
 
                 {/* Blue Glow effect below image */}
