@@ -35,7 +35,10 @@ const Footer: React.FC = () => {
   }, []);
 
   return (
-    <footer className="border-t border-gray-800 bg-black">
+    <footer
+      className="border-t border-gray-800 
+    "
+    >
       <div className="py-[30px] mx-auto flex flex-col justify-center items-center">
         {/* লোগো সেকশন - এখানে onClick ইভেন্ট যোগ করা হয়েছে */}
         <div
