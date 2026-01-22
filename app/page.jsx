@@ -1,7 +1,7 @@
 import Hero from "@/components/Hero";
 import NavBar from "@/components/Navbar";
 import Particles from "@/components/Particles";
-import LiquidEther from "@/components/LiquidEther";
+
 import SocialMedia from "@/components/SocailMedia";
 import StatsSection from "@/components/StateSection";
 import About from "@/components/About";
@@ -11,6 +11,7 @@ import Contact from "@/components/Contact";
 import TestimonialSlider from "@/components/Testimonials";
 import FAQSection from "@/components/Faq";
 import Footer from "@/components/Footer";
+import CustomCursor from "@/components/CustomCarsor";
 
 const Home = () => {
   return (
@@ -20,26 +21,7 @@ const Home = () => {
       </div>
 
       <div className="fixed inset-0 z-[-2] pointer-events-none">
-        <LiquidEther
-          colors={["#52409C", "#136AA0", "#290B8E"]}
-          mouseForce={21}
-          cursorSize={100}
-          isViscous
-          viscous={30}
-          iterationsViscous={32}
-          iterationsPoisson={32}
-          resolution={0.5}
-          isBounce={false}
-          autoDemo
-          autoSpeed={0.5}
-          autoIntensity={2.2}
-          takeoverDuration={0.25}
-          autoResumeDelay={3000}
-          autoRampDuration={0.6}
-          color0="#136AA0"
-          color1="#136AA0"
-          color2="#290B8E"
-        />
+        <CustomCursor />
       </div>
 
       <div className="relative z-10 w-full">
