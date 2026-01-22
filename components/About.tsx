@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { FaBook, FaBriefcase } from "react-icons/fa";
+import { FaBook, FaBriefcase, FaLaptopCode } from "react-icons/fa";
 import AOS from "aos";
 import "aos/dist/aos.css";
 // motion এবং Variants টাইপ ইমপোর্ট করা হয়েছে
@@ -89,21 +89,21 @@ const About: React.FC = () => {
   const workExperience: Experience[] = [
     {
       id: 1,
-      work: "Gorur Ghash",
-      position: "Front-End - Developer",
-      duration: "May 2024 - July 2024",
+      work: "Spark Tech Agency",
+      position: "Front-End Developer",
+      duration: "Dec 2025 - Present",
     },
     {
       id: 2,
-      work: "Sultan Dine",
-      position: "Front-End - Developer",
-      duration: "Mar 2024 - April 2024",
+      work: "Desh IT BD",
+      position: "Front-End Developer",
+      duration: "Sep 2025 - Nov 2025",
     },
     {
       id: 3,
-      work: "Diagram",
-      position: "Front-End - Developer",
-      duration: "Jan 2024 - Feb 2024",
+      work: "Freelance IT",
+      position: "Front-End Developer",
+      duration: "May 2024 - Jun 2024",
     },
   ];
 
@@ -175,11 +175,11 @@ const About: React.FC = () => {
                         whileHover={{ scale: 1.02, x: 10 }}
                         className="group flex gap-5 items-center border border-blue-600/20 p-5 rounded-xl bg-gradient-to-r from-blue-900/10 to-transparent hover:border-blue-600/60 transition-all shadow-sm"
                       >
-                        <div className="text-2xl p-4 rounded-lg bg-black border border-blue-600/50 text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                        <div className="text-2xl p-4 rounded-lg bg-black border border-blue-600/50 text-blue-500 group-hover:bg-blue-700 group-hover:text-white transition-all duration-300">
                           {activeSection === "education" ? (
                             <FaBook />
                           ) : (
-                            <FaBriefcase />
+                            <FaLaptopCode />
                           )}
                         </div>
 

@@ -123,24 +123,27 @@ const Projects = () => {
         </div>
 
         {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 mt-10 mb-12">
-          {(["all", "live", "working"] as const).map((type) => (
-            <button
-              key={type}
-              onClick={() => setFilter(type)}
-              className={`px-8 py-2.5 rounded-full border-2 font-medium capitalize transition-all duration-300 ${
-                filter === type
-                  ? "bg-blue-600 border-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.5)] scale-105"
-                  : "bg-transparent border-blue-600/30 text-gray-400 hover:border-blue-500 hover:text-white"
-              }`}
-            >
-              {type === "all"
-                ? "All Projects"
-                : type === "live"
-                  ? "Live Projects"
-                  : "Ongoing Projects"}
-            </button>
-          ))}
+        <div className="flex justify-center mt-10 mb-12">
+          {/* Skills সেকশনের মতো ডার্ক কন্টেইনার */}
+          <div className="flex flex-wrap justify-center items-center gap-2 md:gap-4 bg-slate-900/50 w-fit p-1.5 rounded-full border border-slate-800 shadow-xl">
+            {(["all", "live", "working"] as const).map((type) => (
+              <button
+                key={type}
+                onClick={() => setFilter(type)}
+                className={`px-6 py-2 md:px-8 md:py-2.5 rounded-full text-sm md:text-base font-bold transition-all duration-300 capitalize ${
+                  filter === type
+                    ? "bg-blue-700 text-white shadow-[0_0_15px_rgba(37,99,235,0.3)]"
+                    : "text-slate-400 hover:text-blue-400 hover:bg-slate-800/50"
+                }`}
+              >
+                {type === "all"
+                  ? "All Projects"
+                  : type === "live"
+                    ? "Live Projects"
+                    : "Ongoing Projects"}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Project Grid */}

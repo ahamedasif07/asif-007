@@ -143,7 +143,7 @@ const StatsSection: React.FC = () => {
                   0+
                 </h3>
                 <p className="text-slate-400 text-lg mt-1 font-medium">
-                  Global Projects
+                  Projects
                 </p>
               </div>
               <div className="w-20 h-20 rounded-3xl bg-gradient-to-tr from-blue-600 to-blue-400 flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.3)]">

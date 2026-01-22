@@ -231,7 +231,7 @@ const SkillsSection: React.FC = () => {
                       delay: index * 0.1,
                       ease: "circOut",
                     }}
-                    className="h-full bg-gradient-to-r from-blue-600 to-cyan-400"
+                    className="h-full bg-gradient-to-r from-blue-700 to-cyan-400"
                   />
                 </div>
 

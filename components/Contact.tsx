@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import React from "react";
@@ -114,22 +115,22 @@ const Contact: React.FC = () => {
                 {[
                   {
                     icon: <Github size={24} />,
-                    link: "#",
+                    link: "https://github.com/ahamedasif07",
                     color: "hover:bg-gray-800",
                   },
                   {
                     icon: <Linkedin size={24} />,
-                    link: "#",
+                    link: "https://www.linkedin.com/in/asif-hosen-87269832b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
                     color: "hover:bg-blue-700",
                   },
                   {
                     icon: <Twitter size={24} />,
-                    link: "#",
+                    link: "https://x.com/AhamedAsif01729",
                     color: "hover:bg-sky-500",
                   },
                   {
                     icon: <Facebook size={24} />,
-                    link: "#",
+                    link: "https://www.facebook.com/ahamedasif01729",
                     color: "hover:bg-blue-600",
                   },
                 ].map((social, i) => (
