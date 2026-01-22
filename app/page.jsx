@@ -11,7 +11,9 @@ import Contact from "@/components/Contact";
 import TestimonialSlider from "@/components/Testimonials";
 import FAQSection from "@/components/Faq";
 import Footer from "@/components/Footer";
-import CustomCursor from "@/components/CustomCarsor";
+
+import SmokeyCursor from "@/components/lightswind/smokey-cursor";
+import CutomSmockCarsor from "@/components/lightswind/CustomSmockCarsor";
 
 const Home = () => {
   return (
@@ -21,7 +23,9 @@ const Home = () => {
       </div>
 
       <div className="fixed inset-0 z-[-2] pointer-events-none">
-        <CustomCursor />
+        <CutomSmockCarsor />
+        <SmokeyCursor />
+        <CutomSmockCarsor />
       </div>
 
       <div className="relative z-10 w-full">
