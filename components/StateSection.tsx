@@ -236,6 +236,22 @@ const StatsSection: React.FC = () => {
               <div className="flex flex-wrap justify-center gap-4">
                 {[
                   {
+                    name: "Next.js 15",
+                    color: "hover:text-white hover:border-white/30",
+                    icon: (
+                      <svg viewBox="0 0 180 180" className="w-5 h-5 fill-white">
+                        <path
+                          d="M145.4 145.4c-36.1 36.1-94.6 36.1-130.7 0-36.1-36.1-36.1-94.6 0-130.7 36.1-36.1 94.6-36.1 130.7 0 36.1 36.1 36.1 94.6 0 130.7z"
+                          fill="#000"
+                        />
+                        <path
+                          d="M124.6 142.2L61.7 61.7H51.4v62.3h9.3V73.4l55.8 72c3.4-1.9 6.2-3.8 8.1-3.2zM102.7 61.7h9.3v38.2l-9.3-12.1V61.7z"
+                          fill="white"
+                        />
+                      </svg>
+                    ),
+                  },
+                  {
                     name: "React 19",
                     color: "hover:text-[#61DAFB] hover:border-[#61DAFB]/30",
                     icon: (
@@ -253,22 +269,6 @@ const StatsSection: React.FC = () => {
                     ),
                   },
                   {
-                    name: "Next.js 15",
-                    color: "hover:text-white hover:border-white/30",
-                    icon: (
-                      <svg viewBox="0 0 180 180" className="w-5 h-5 fill-white">
-                        <path
-                          d="M145.4 145.4c-36.1 36.1-94.6 36.1-130.7 0-36.1-36.1-36.1-94.6 0-130.7 36.1-36.1 94.6-36.1 130.7 0 36.1 36.1 36.1 94.6 0 130.7z"
-                          fill="#000"
-                        />
-                        <path
-                          d="M124.6 142.2L61.7 61.7H51.4v62.3h9.3V73.4l55.8 72c3.4-1.9 6.2-3.8 8.1-3.2zM102.7 61.7h9.3v38.2l-9.3-12.1V61.7z"
-                          fill="white"
-                        />
-                      </svg>
-                    ),
-                  },
-                  {
                     name: "TypeScript",
                     color: "hover:text-[#3178C6] hover:border-[#3178C6]/30",
                     icon: (
@@ -282,14 +282,12 @@ const StatsSection: React.FC = () => {
                     ),
                   },
                   {
-                    name: "GSAP 3",
-                    color: "hover:text-[#88CE02] hover:border-[#88CE02]/30",
+                    name: "JavaScript",
+                    color: "hover:text-[#F7DF1E] hover:border-[#F7DF1E]/30",
                     icon: (
-                      <svg
-                        viewBox="0 0 100 100"
-                        className="w-5 h-5 fill-[#88CE02]"
-                      >
-                        <path d="M50 2L15 55h25L30 98l45-55H50l15-41z" />
+                      <svg viewBox="0 0 630 630" className="w-5 h-5">
+                        <rect width="630" height="630" fill="#f7df1e" />
+                        <path d="m423.2 492.19c12.69 20.72 29.2 35.92 58.4 35.92 24.53 0 40.2-12.26 40.2-29.2 0-20.3-16.1-27.49-43.1-39.3l-14.8-6.35c-42.72-18.2-71.1-41-71.1-89.2 0-44.4 33.83-78.2 86.7-78.2 37.64 0 64.7 13.1 84.2 47.4l-46.1 29.6c-10.15-18.2-21.1-25.37-38.1-25.37-17.34 0-28.33 11-28.33 25.37 0 17.76 11 24.95 36.4 35.92l14.8 6.34c50.3 21.57 78.7 43.56 78.7 93 0 53.3-41.87 82.5-98.1 82.5-54.98 0-90.5-26.2-107.88-60.54zm-209.13 5.13c9.3 16.5 17.76 30.45 38.1 30.45 19.45 0 31.72-7.61 31.72-37.2v-201.3h59.2v202.1c0 61.3-35.94 89.2-88.4 89.2-47.4 0-74.85-24.53-88.81-54.075z" />
                       </svg>
                     ),
                   },
