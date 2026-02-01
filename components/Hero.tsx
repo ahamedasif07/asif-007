@@ -12,12 +12,22 @@ import TypingTitle from "./TypingText";
 const Hero: React.FC = () => {
   const particleContainerRef = useRef<HTMLDivElement | null>(null);
 
+  // --- "Jaki" Khawa Drop Animation Variants ---
   const textItemVariants: Variants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: {
+      y: -200, // Onek upore thake porbe
+      opacity: 0,
+    },
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+      transition: {
+        type: "spring",
+        stiffness: 260, // Shokti barano hoyeche druto parar jonno
+        damping: 15, // Jaki khabar poriman control korbe
+        mass: 1,
+        duration: 0.8,
+      },
     },
   };
 
@@ -25,7 +35,10 @@ const Hero: React.FC = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.3 },
+      transition: {
+        staggerChildren: 0.2, // Ekta ekta kore porbe
+        delayChildren: 0.1,
+      },
     },
   };
 
@@ -72,13 +85,13 @@ const Hero: React.FC = () => {
       <div className="relative hero">
         <section className="mb-9">
           <div className="md:flex justify-between min-h-[750px] items-center">
-            {/* Left Section - Text Content */}
+            {/* Left Section - Text Content with Bouncy Drop */}
             <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="md:w-1/2 flex flex-col items-center pl-0 md:pl-[80px]  lg:items-start text-center lg:text-left"
+              className="md:w-1/2 flex flex-col items-center pl-0 md:pl-[80px] lg:items-start text-center lg:text-left"
             >
               <motion.span
                 variants={textItemVariants}
@@ -150,7 +163,7 @@ const Hero: React.FC = () => {
               </motion.div>
             </motion.div>
 
-            {/* Right Section - Image with Black Fade Overlay */}
+            {/* Right Section - Image */}
             <div className="flex md:w-1/2 justify-center md:justify-end relative mt-16 lg:mt-0">
               <div
                 ref={particleContainerRef}
@@ -179,12 +192,8 @@ const Hero: React.FC = () => {
                     priority
                     className="object-contain w-full h-full"
                   />
-
-                  {/* --- Black Overlay Gradient --- */}
                   <div className="absolute inset-x-0 bottom-0 h-1/9 bg-gradient-to-t from-black/90 via-black/40 w-[280px] left-27 to-transparent z-20" />
                 </motion.div>
-
-                {/* Blue Glow effect below image */}
                 <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-2/3 h-24 bg-blue-500/10 blur-[100px] -z-10 rounded-full" />
               </motion.div>
             </div>

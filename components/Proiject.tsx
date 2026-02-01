@@ -25,7 +25,7 @@ const Projects = () => {
         "https://i.ibb.co.com/20sRZcg7/459318469-510183361732201-973057694240494391-n.jpg",
       projectName: "Gorur Ghash",
       projectDescription:
-        "A modern e-commerce platform built with React.js and Tailwind CSS.",
+        "A modern e-commerce platform built with Next.js and Tailwind CSS.",
       LiveLink: "https://project-gorur-ghash-d7b9.vercel.app/",
       isLive: false,
       isWorking: false,
@@ -84,8 +84,28 @@ const Projects = () => {
         "https://i.ibb.co.com/gLFCzqmL/324268690-3333959940256153-6463376740799483701-n.jpg",
       projectName: "Diagram",
       projectDescription:
-        "Online store using React.js with integrated payment gateway.",
+        "Online store using React.js with integrated add to card .",
       LiveLink: "http://ak-asif-diagram.surge.sh",
+      isLive: false,
+      isWorking: false,
+    },
+    {
+      id: 8,
+      image: "https://i.ibb.co.com/YTTRLfjZ/Screenshot-16.png",
+      projectName: "Sneaqers",
+      projectDescription:
+        "Online store using next.js with integrated real time search functionality.",
+      LiveLink: "https://project-sneaqers.vercel.app/",
+      isLive: false,
+      isWorking: false,
+    },
+    {
+      id: 9,
+      image: "https://i.ibb.co.com/XkCkqLzP/Screenshot-17.png",
+      projectName: "Alpha Flooring",
+      projectDescription:
+        "Online store using Next.js with integrated real time data change functionality.",
+      LiveLink: "https://project-stair-ttvz.vercel.app/",
       isLive: false,
       isWorking: false,
     },
