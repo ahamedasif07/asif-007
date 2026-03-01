@@ -136,8 +136,9 @@ const Hero: React.FC = () => {
                 </motion.button>
 
                 <motion.a
-                  href="/public/Asif_Hosen_Frontend_Developer.pdf"
+                  href="/Asif_Hosen_Frontend_Developer.pdf"
                   target="_blank"
+                  download
                   rel="noopener noreferrer"
                   whileHover={{ y: -5 }}
                   whileTap={{ scale: 0.95 }}
