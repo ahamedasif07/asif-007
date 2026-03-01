@@ -109,6 +109,16 @@ const Projects = () => {
       isLive: false,
       isWorking: false,
     },
+    {
+      id: 10,
+      image: "https://i.ibb.co.com/N6YV0JL7/Screenshot-55.png",
+      projectName: "Age of Sosaria",
+      projectDescription:
+        "Game website create with html, css, tailwindCSS, js, Gsap .",
+      LiveLink: "https://ageofsosaria.com/",
+      isLive: true,
+      isWorking: false,
+    },
   ];
 
   const filteredProjects = projects.filter((p) => {

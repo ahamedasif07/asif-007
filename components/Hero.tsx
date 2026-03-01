@@ -136,7 +136,7 @@ const Hero: React.FC = () => {
                 </motion.button>
 
                 <motion.a
-                  href="/asif-resume.pdf"
+                  href="/public/Asif_Hosen_Frontend_Developer.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ y: -5 }}
