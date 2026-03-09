@@ -13,10 +13,13 @@ interface Project {
   LiveLink: string;
   isLive: boolean;
   isWorking: boolean;
+  isFuture?: boolean;
 }
 
 const Projects = () => {
-  const [filter, setFilter] = useState<"all" | "live" | "working">("all");
+  const [filter, setFilter] = useState<"all" | "live" | "working" | "future">(
+    "all",
+  );
 
   const projects: Project[] = [
     {
@@ -119,12 +122,47 @@ const Projects = () => {
       isLive: true,
       isWorking: false,
     },
+    // Future Projects
+    {
+      id: 11,
+      image: "https://i.ibb.co.com/7tt8nWRV/Screenshot-122.png",
+      projectName: "Bruno",
+      projectDescription:
+        "An inspired concept to build a game like this inside a website",
+      LiveLink: "https://bruno-simon.com/",
+      isLive: false,
+      isWorking: false,
+      isFuture: true,
+    },
+    {
+      id: 12,
+      image: "https://i.ibb.co.com/fYmHCVw7/Screenshot-123.png",
+      projectName: "Igloo",
+      projectDescription: "A future project three.js gsap anamated model",
+      LiveLink: "https://www.igloo.inc/",
+      isLive: false,
+      isWorking: false,
+      isFuture: true,
+    },
+    {
+      id: 13,
+      image: "https://i.ibb.co.com/prL9LcPq/Screenshot-125.png",
+      projectName: "Mousham",
+      projectDescription:
+        "A smooth anamated high anamated website anamate by gsap .",
+      LiveLink: "https://mousham.design/",
+      isLive: false,
+      isWorking: false,
+      isFuture: true,
+    },
   ];
 
+  // Updated Filter Logic
   const filteredProjects = projects.filter((p) => {
-    if (filter === "all") return true;
+    if (filter === "all") return !p.isFuture; // "All" এ ফিউচার প্রজেক্ট দেখাবে না
     if (filter === "live") return p.isLive;
     if (filter === "working") return p.isWorking;
+    if (filter === "future") return p.isFuture; // শুধু ফিউচার প্রজেক্ট দেখাবে
     return true;
   });
 
@@ -153,10 +191,9 @@ const Projects = () => {
         </div>
 
         {/* Filter Buttons */}
-        <div className="flex justify-center mt-10 mb-12">
-          {/* Skills সেকশনের মতো ডার্ক কন্টেইনার */}
+        <div className="flex justify-center mt-16 mb-12">
           <div className="flex flex-wrap justify-center items-center gap-2 md:gap-4 bg-slate-900/50 w-fit p-1.5 rounded-full border border-slate-800 shadow-xl">
-            {(["all", "live", "working"] as const).map((type) => (
+            {(["all", "live", "working", "future"] as const).map((type) => (
               <button
                 key={type}
                 onClick={() => setFilter(type)}
@@ -170,7 +207,9 @@ const Projects = () => {
                   ? "All Projects"
                   : type === "live"
                     ? "Live Projects"
-                    : "Ongoing Projects"}
+                    : type === "working"
+                      ? "Ongoing Projects"
+                      : "Future Goals"}
               </button>
             ))}
           </div>

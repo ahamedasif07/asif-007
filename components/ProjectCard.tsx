@@ -21,7 +21,7 @@ const ProjectCard: React.FC<ProjectProps> = ({ project }) => {
     project;
 
   return (
-    <div className="group relative w-full bg-[#0f172a] rounded-2xl p-[2px] overflow-hidden transition-all duration-500 hover:shadow-[0_0_30px_rgba(37,99,235,0.3)]">
+    <div className="group relative h-[420px] w-full bg-[#0f172a] rounded-2xl p-[2px] overflow-hidden transition-all duration-500 hover:shadow-[0_0_30px_rgba(37,99,235,0.3)]">
       {/* ১. Infinite Border Effect (Always Rotating with Blue Shades) */}
       <div className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#1e40af_0%,#2563eb_25%,transparent_50%,#60a5fa_75%,#1e40af_100%)]" />
 
